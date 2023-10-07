@@ -4,9 +4,10 @@ const mysql = require("mysql2");
 const app = express();
 app.use(express.json());
 app.use(cors());
-
 require('dotenv').config();
 
+
+//Os commit serão feito na feature/newmaster
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,
