@@ -1,0 +1,19 @@
+DROP DATABASE IF EXISTS baseifba;
+CREATE DATABASE IF NOT EXISTS baseifba;
+USE baseifba;
+
+CREATE TABLE IF NOT EXISTS professores(
+		cpf varchar(11) primary key not null, 
+        nome varchar(45), 
+        area varchar(45));
+
+CREATE TABLE IF NOT EXISTS administradores(
+		cpf varchar(45) not null, 
+        nome varchar(45), 
+        foreign key(cpf) references professores(cpf)); 
+        
+INSERT INTO professores values
+("00000000000", "Leroy Umasi", "Eletrônica");
+
+INSERT INTO administradores values
+("00000000000", "Leroy Umasi");
