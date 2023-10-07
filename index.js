@@ -24,7 +24,7 @@ db.connect((err) => {
 });
   
 app.get('/users', function (req, res) {
-    db.query('select (nome, email, departamento, cargo) from usuarios', (err, results) => {
+    db.query('SELECT nome, email, cargo FROM usuarios', (err, results) => {
       if (err) {
         console.error('Erro ao executar a consulta:', err);
         res.status(500).json({ error: 'Erro ao buscar dados de usuário' });
