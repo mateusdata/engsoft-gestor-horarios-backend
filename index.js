@@ -67,7 +67,7 @@ app.get('/criar-tabela-aulas', function (req, res) {
   
   
 app.get('/users', function (req, res) {
-    db.query('SELECT * FROM users', (err, results) => {
+    db.query('select * from usuarios', (err, results) => {
       if (err) {
         console.error('Erro ao executar a consulta:', err);
         res.status(500).json({ error: 'Erro ao buscar dados de usuário' });
