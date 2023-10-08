@@ -1,7 +1,6 @@
-# Meu Projeto Node.js com Express
+# Projeto de Backend de Engenharia de Software com Node.js e Express
 
-Bem-vindo ao meu projeto Node.js com Express! Este projeto é uma aplicação web construída com Node.js e Express.
-
+Bem-vindo ao projeto de Backend de Gestão de Horários de Faculdade com Node.js e Express! Este projeto é a parte do backend de uma aplicação web desenvolvida para a gestão de horários de aulas em instituições de ensino superior.
 ## Clonagem
 
 Para clonar este repositório, execute o seguinte comando:
