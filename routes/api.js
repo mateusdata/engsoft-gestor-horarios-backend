@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
-const chaveSecreta = "mateus";
 
 const router = Router();
 
