@@ -3,20 +3,17 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cors());
-const AuthRouter = require("./routes/login");
-const UserRouter = require("./routes/user");
+const AuthRouter = require("./routes/user");
+const ApiRouter = require("./routes/api");
 
 
-app.use("/api", AuthRouter);
-app.use("/user", UserRouter);
+app.use("/auth", AuthRouter);
+app.use("/user", ApiRouter);
 
 app.get("/", function (req, res) {
-  res.send({
-    name: "Projeto de engenharia do sofware",
-    version: "6° semestre",
-  });
+  res.send({name: "Projeto de engenharia do sofware"});
 });
-
+  
 app.listen(3001, () => {
   console.log("Servidor rodando na porta 3001");
 });

@@ -1,46 +1,44 @@
-
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const DB = require("../config/database");
-const chaveSecreta = "mateus"
+const chaveSecreta = "mateus";
+const bcrypt = require('bcrypt');
 
 function login(req, res) {
-    console.log(req.body);
-    const sql = "SELECT * FROM usuarios where email = 'leroy@example.com'";
-    DB.query(sql, (err, results) => {
-      if (err) {
-        return res.send(err);
-      }
-      let isLogado = results[0].senha === req.body.senha;
-      const user = {
-        id: results[0].id,
-        nome: results[0].nome,
-        email: results[0].email,
-      };
-      console.log("Meu objeto", user);
-      if (isLogado) {
-        const token = jwt.sign({ id_token: 1 }, chaveSecreta, {
-          expiresIn: "30s",
-        });
-        res.send(token);
-      } else {
-        res
-          .status(401)
-          .json({ status: 401, message: "Usuario ou senha incorretos" });
-      }
-    });
-  }
-  
-
-
-function getUsers(req, res){
-    DB.query("SELECT nome, email, cargo FROM usuarios", (err, results) => {
+  const { email, senha } = req.body;
+  const sql = "SELECT * FROM usuarios where email = ? ";
+  DB.query(sql, [email], (err, results) => {
+    if (err) {
+      res.status(500).send({ error: "Ouve um erro no banco de dados." });
+    }
+    if (results.length > 0) {
+      bcrypt.compare(senha, results[0].senha, function(err, isMatch) {
         if (err) {
-          console.error("Erro ao executar a consulta:", err);
-          res.status(500).json({ error: "Erro ao buscar dados de usuário" });
+          return res.status(500).send({ error: err.message });
+        }
+        if (isMatch) {
+          const token = jwt.sign({ id_token: 3 }, chaveSecreta, {
+            expiresIn: 210,
+          });
+          return res.send({ token, nome: results[0].nome });
         } else {
-          res.json(results);
+          return res.status(400).json({ status: 401, message: "Senha incorreta" });
         }
       });
+    } else {
+      return res.status(400).json({ status: 401, message: "Usuario inexistente" });
+    }
+  });
 }
 
-module.exports = {login, getUsers};
+function getUsers(req, res) {
+  DB.query("SELECT nome, email, cargo FROM usuarios", (err, results) => {
+    if (err) {
+      console.error("Erro ao executar a consulta:", err);
+      res.status(500).json({ error: "Erro ao buscar dados de usuário" });
+    } else {
+      res.json(results);
+    }
+  });
+}
+
+module.exports = { login, getUsers };
