@@ -17,7 +17,7 @@ function login(req, res) {
         }
         if (isMatch) {
           const token = jwt.sign({ id_token: 3 }, chaveSecreta, {
-            expiresIn: 210,
+            expiresIn: "20s",
           });
           return res.send({ token, nome: results[0].nome });
         } else {
