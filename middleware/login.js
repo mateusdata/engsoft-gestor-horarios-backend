@@ -1,24 +1,26 @@
 const jwt = require("jsonwebtoken");
 const chaveSecreta = "mateus";
-const middleareUser = (req, res, next) => {
-  const token = req.header("Authorization");
-  if (!token) {
+
+const middlewareUser = (req, res, next) => {
+  const tokenHeader = req.header("Authorization");
+  
+  if (!tokenHeader) {
     return res.status(403).send("Acesso negado");
   }
+
+  const token = tokenHeader.split(" ")[1];
 
   try {
     jwt.verify(token, chaveSecreta, (err, decode) => {
       if (err) {
-        return res.send("deu errado");
+        return res.status(401).json({ message: "Token inválido ou expirado" });
       }
       req.id_token = decode.id_token;
+      next();
     });
-    // Mantenha a chamada next() aqui para continuar o fluxo
-    next();
   } catch {
-    return res
-      .status(401)
-      .json({ mensagem: "Token inválido ou expirado"});
+    return res.status(500).json({ message: "Erro interno no servidor" });
   }
 };
-module.exports = middleareUser;
+
+module.exports = middlewareUser;

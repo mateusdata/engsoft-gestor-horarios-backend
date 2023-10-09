@@ -1,15 +1,12 @@
 const { Router } = require("express");
-const jwt = require("jsonwebtoken");
-const chaveSecreta = "mateus";
-
+const jwt = require('jsonwebtoken');
 const router = Router();
-const DB = require("../config/database");
 
-const middleareUser = require("../middleware/login");
-const authControler  = require("../controllers/userController")
+const authControler  = require("../controllers/authController")
+const registerController  = require("../controllers/registerController")
 
+router.post("/login", authControler.login); 
+router.post("/cadastros", (registerController.register));
 
-//router.use(middleareUser);
-router.get("/teste",middleareUser , authControler.getUsers);
 
 module.exports = router;
