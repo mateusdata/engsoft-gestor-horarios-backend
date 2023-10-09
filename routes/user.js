@@ -3,10 +3,12 @@ const jwt = require('jsonwebtoken');
 const router = Router();
 
 const authControler  = require("../controllers/authController")
-const registerController  = require("../controllers/registerController")
+const registerController  = require("../controllers/registerController");
+const middlewareUser = require("../middleware/login");
 
 router.post("/login", authControler.login); 
 router.post("/cadastros", (registerController.register));
+router.get("/estalogado",middlewareUser , authControler.isLogged);
 
 
 module.exports = router;

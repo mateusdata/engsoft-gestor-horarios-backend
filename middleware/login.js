@@ -19,7 +19,7 @@ const middlewareUser = (req, res, next) => {
       next();
     });
   } catch {
-    return res.status(500).json({ message: "Erro interno no servidor" });
+    return res.status(500).json({ message: "Erro interno no servidor", token });
   }
 };
 
