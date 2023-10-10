@@ -1,13 +1,48 @@
 const jwt = require("jsonwebtoken");
-const DB = require("../config/database");
+//const DB = require("../config/database");
 const chaveSecreta = "mateus";
 const bcrypt = require('bcrypt');
+
+require('dotenv').config();
+
+
+const mysql = require("mysql2");
+
+const DB = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT,
+});
 
 function login(req, res) {
   const { email, senha } = req.body;
   console.log(email, senha);
   const sql = "SELECT * FROM usuarios where email = ? ";
- 
+  DB.query(sql, [email], (err, results) => {
+    if (err) {
+      console.error(err); 
+      res.status(500).send({ error: "Ouve um erro no banco de dados." });
+    }
+    if (results.length > 0) {
+      bcrypt.compare(senha, results[0].senha, function(err, isMatch) {
+        if (err) {
+          return res.status(500).send({ error: err.message });
+        }
+        if (isMatch) {
+          const token = jwt.sign({ id_token: 3 }, chaveSecreta, {
+            expiresIn: "3s", //duração em segundos
+          });
+          return res.send({ token, nome: results[0].nome });
+        } else {
+          return res.status(400).json({ status: 401, message: "Senha incorreta" });
+        }
+      });
+    } else {
+      return res.status(400).json({ status: 401, message: "Usuario inexistente" });
+    }
+  });
 }
 
 function getUsers(req, res) {

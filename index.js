@@ -31,8 +31,8 @@ DB.connect((err) => {
   
 module.exports = DB;
 
-app.use("/auth", AuthRouter);
-app.use("/user", ApiRouter);
+  app.use("/auth", AuthRouter);
+  app.use("/user", ApiRouter);
 
 app.get("/vercel", function (req, res) {
   res.send({name: "Api esta no computador local, tenha paciencia","Porta do servidor": port});
