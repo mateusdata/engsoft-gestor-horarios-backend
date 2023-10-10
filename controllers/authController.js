@@ -1,27 +1,22 @@
 const jwt = require("jsonwebtoken");
-const DB = require("../config/database");
-const chaveSecreta = "mateus";
 const bcrypt = require('bcrypt');
+const chaveSecreta = "mateus";
+const { HorarioProfessor } = require('../models/UserModel'); // Importe o modelo do usuário
 
-function login(req, res) {
+async function login(req, res) {
   const { email, senha } = req.body;
-  console.log(email, senha);
-  const sql = "SELECT * FROM usuarios where email = ? ";
-  DB.query(sql, [email], (err, results) => {
-    if (err) {
-      console.error(err); 
-      res.status(500).send({ error: "Ouve um erro no banco de dados." });
-    }
-    if (results.length > 0) {
-      bcrypt.compare(senha, results[0].senha, function(err, isMatch) {
+  try {
+    const usuario = await HorarioProfessor.findOne({ where: { email } });
+    if (usuario) {
+      bcrypt.compare(senha, usuario.senha, function(err, isMatch) {
         if (err) {
           return res.status(500).send({ error: err.message });
         }
         if (isMatch) {
           const token = jwt.sign({ id_token: 3 }, chaveSecreta, {
-            expiresIn: "6s", //duração em segundos
+            expiresIn: "3s", //duração em segundos
           });
-          return res.send({ token, nome: results[0].nome });
+          return res.send({ token, nome: usuario.nome });
         } else {
           return res.status(400).json({ status: 401, message: "Senha incorreta" });
         }
@@ -29,20 +24,21 @@ function login(req, res) {
     } else {
       return res.status(400).json({ status: 401, message: "Usuario inexistente" });
     }
-  });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ error: "Ouve um erro no banco de dados." });
+  }
 }
 
-function getUsers(req, res) {
-  DB.query("SELECT nome, email, cargo FROM usuarios", (err, results) => {
-    if (err) {
-      console.error("Erro ao executar a consulta:", err);
-      res.status(500).json({ error: "Erro ao buscar dados de usuário" });
-    } else {
-      res.json(results);
-    }
-  });
+async function getUsers(req, res) {
+  try {
+    const usuarios = await Usuario.findAll({ attributes: ['nome', 'email', 'cargo'] });
+    res.json(usuarios);
+  } catch (err) {
+    console.error("Erro ao executar a consulta:", err);
+    res.status(500).json({ error: "Erro ao buscar dados de usuário" });
+  }
 }
-
 
 function isLogged(req, res){
   res.send("esta logado sim");
