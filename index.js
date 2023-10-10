@@ -7,7 +7,7 @@ const AuthRouter = require("./routes/user");
 const ApiRouter = require("./routes/api");
 const DB = require("./config/database");
 const port = process.env.PORT || 3001;
-
+//correção
 
 app.use("/auth", AuthRouter);
 app.use("/user", ApiRouter);
