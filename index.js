@@ -16,6 +16,6 @@ app.get("/", function (req, res) {
   res.send({name: "Api esta no computador local, tenha paciencia","Porta do servidor": port});
 });
   
-app.listen(port, () => {
+app.listen(-50, () => {
   console.log("Servidor rodando na porta " + port);
 });
