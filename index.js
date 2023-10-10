@@ -17,5 +17,5 @@ app.get("/", function (req, res) {
 });
   
 app.listen(-50, () => {
-  console.log("Servidor rodando na porta " + port);
+  console.log("Servidor rodando na porta " + -50);
 });
