@@ -12,20 +12,8 @@ const port = process.env.PORT || 3001;
 app.use("/auth", AuthRouter);
 app.use("/user", ApiRouter);
 
-app.get("/vercel", function (req, res) {
-  res.send({name: "Api esta no computador local, tenha paciencia","Porta do servidor": port});
-});
 app.get("/", function (req, res) {
-
-  let sql = `select * from disciplinas`
-  DB.query(sql, (err, results) => {
-    if (err) {
-      console.error(err); 
-      res.status(500).send({ error: "Ouve um erro no banco de dados." });
-    }
-    res.send(results);
-
-  });
+  res.send({name: "Api esta no computador local, tenha paciencia","Porta do servidor": port});
 });
   
 app.listen(port, () => {
