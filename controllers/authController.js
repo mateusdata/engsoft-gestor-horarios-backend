@@ -5,9 +5,11 @@ const bcrypt = require('bcrypt');
 
 function login(req, res) {
   const { email, senha } = req.body;
+  console.log(email, senha);
   const sql = "SELECT * FROM usuarios where email = ? ";
   DB.query(sql, [email], (err, results) => {
     if (err) {
+      console.error(err); 
       res.status(500).send({ error: "Ouve um erro no banco de dados." });
     }
     if (results.length > 0) {
@@ -17,7 +19,7 @@ function login(req, res) {
         }
         if (isMatch) {
           const token = jwt.sign({ id_token: 3 }, chaveSecreta, {
-            expiresIn: "30s", //duração em segundos
+            expiresIn: "3s", //duração em segundos
           });
           return res.send({ token, nome: results[0].nome });
         } else {
