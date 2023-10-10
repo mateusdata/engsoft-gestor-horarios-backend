@@ -17,7 +17,7 @@ app.get("/vercel", function (req, res) {
 });
 app.get("/", function (req, res) {
 
-  let sql = `select * from disciplinas`
+  let sql = `select * from cursos;`
   DB.query(sql, (err, results) => {
     if (err) {
       console.error(err); 
