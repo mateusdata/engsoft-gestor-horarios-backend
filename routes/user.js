@@ -7,7 +7,7 @@ const registerController  = require("../controllers/registerController");
 const middlewareUser = require("../middleware/login");
 
 router.post("/login", authControler.login); 
-router.post("/cadastros", (registerController.register));
+router.post("/cadastros", registerController.register);
 router.get("/estalogado",middlewareUser , authControler.isLogged);
 
 
