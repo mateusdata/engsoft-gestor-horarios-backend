@@ -1,11 +1,10 @@
-const express = require("express");
-const cors = require("cors");
+import express, { json } from "express";
+import cors from "cors";
 const app = express();
-app.use(express.json());
+app.use(json());
 app.use(cors());
-const AuthRouter = require("./routes/user");
-const ApiRouter = require("./routes/api");
-const DB = require("./config/database");
+import AuthRouter from "./routes/user";
+import ApiRouter from "./routes/api";
 const port = process.env.PORT || 3001;
 
 

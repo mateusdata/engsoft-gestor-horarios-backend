@@ -1,14 +1,14 @@
-const { Router } = require("express");
-const jwt = require('jsonwebtoken');
+import { Router } from "express";
+import jwt from 'jsonwebtoken';
 const router = Router();
 
-const authControler  = require("../controllers/authController")
-const registerController  = require("../controllers/registerController");
-const middlewareUser = require("../middleware/login");
+import { login, isLogged } from "../controllers/authController";
+import { register } from "../controllers/registerController";
+import middlewareUser from "../middleware/login";
 
-router.post("/login", authControler.login); 
-router.post("/cadastros", (registerController.register));
-router.get("/estalogado",middlewareUser , authControler.isLogged);
+router.post("/login", login); 
+router.post("/cadastros", (register));
+router.get("/estalogado",middlewareUser , isLogged);
 
 
-module.exports = router;
+export default router;
