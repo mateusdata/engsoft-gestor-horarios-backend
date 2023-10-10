@@ -5,7 +5,6 @@ app.use(express.json());
 app.use(cors());
 const AuthRouter = require("./routes/user");
 const ApiRouter = require("./routes/api");
-const DB = require("./config/database");
 const port = process.env.PORT || 3001;
 
 
@@ -16,7 +15,6 @@ app.get("/", function (req, res) {
   res.send({name: "Api esta no computador local, tenha paciencia","Porta do servidor": port});
 });
   
-/*app.listen(port, () => {
+app.listen(port, () => {
   console.log("Servidor rodando na porta " + port);
 });
-*/
