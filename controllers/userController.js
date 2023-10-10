@@ -1,11 +1,11 @@
-import { query } from "../config/database";
+const DB = require("../config/database");
 function getUsers (req, res) {
     res.send("Voce pode acessar essa rota, e vc ta na rota de usuario");
 };
 function listItens (req, res) {
-    
+
     let sql = `select * from disciplinas`
-    query(sql, (err, results) => {
+    DB.query(sql, (err, results) => {
       if (err) {
         console.error(err); 
         res.status(500).send({ error: "Ouve um erro no banco de dados." });
@@ -14,4 +14,4 @@ function listItens (req, res) {
   
     });
   }
-export default {getUsers, listItens};
+module.exports = {getUsers, listItens};

@@ -1,4 +1,4 @@
-import { verify } from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 const chaveSecreta = "mateus";
 
 const middlewareUser = (req, res, next) => {
@@ -11,7 +11,7 @@ const middlewareUser = (req, res, next) => {
   const token = tokenHeader.split(" ")[1];
 
   try {
-    verify(token, chaveSecreta, (err, decode) => {
+    jwt.verify(token, chaveSecreta, (err, decode) => {
       if (err) {
         return res.status(401).json({ message: "Token inválido ou expirado" });
       }
@@ -23,4 +23,4 @@ const middlewareUser = (req, res, next) => {
   }
 };
 
-export default middlewareUser;
+module.exports = middlewareUser;

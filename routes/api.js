@@ -1,10 +1,10 @@
-import { Router } from "express";
-import jwt from "jsonwebtoken";
+const { Router } = require("express");
+const jwt = require("jsonwebtoken");
 
 const router = Router();
 
-import middleareUser from "../middleware/login";
-import authControler from "../controllers/userController";
+const middleareUser = require("../middleware/login");
+const authControler  = require("../controllers/userController")
 //router.use(middleareUser);
 router.get("/teste",middleareUser , authControler.getUsers);
 router.get("/lista" , authControler.listItens);
@@ -15,4 +15,4 @@ router.get("/lista" , authControler.listItens);
 
 
 
-export default router;
+module.exports = router;
