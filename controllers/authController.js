@@ -1,20 +1,7 @@
 const jwt = require("jsonwebtoken");
-//const DB = require("../config/database");
+const DB = require("../config/database");
 const chaveSecreta = "mateus";
 const bcrypt = require('bcrypt');
-
-require('dotenv').config();
-
-
-const mysql = require("mysql2");
-
-const DB = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT,
-});
 
 function login(req, res) {
   const { email, senha } = req.body;
