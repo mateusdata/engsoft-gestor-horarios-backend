@@ -3,7 +3,7 @@ const chaveSecreta = "mateus";
 const bcrypt = require('bcrypt');
 const UserModel = require("../models/UserModel");
 
-class LoginControler {
+class AuthController {
   async login(req, res) {
     const { email, senha } = req.body;
     console.log(email, senha);
@@ -50,4 +50,4 @@ class LoginControler {
   }
 }
 
-module.exports = new LoginControler();
+module.exports = new AuthController();
