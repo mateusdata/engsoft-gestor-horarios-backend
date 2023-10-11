@@ -7,7 +7,7 @@ const middleareUser = require("../middleware/login");
 const UserController  = require("../controllers/UserController")
 //router.use(middleareUser);
 router.get("/teste",middleareUser , UserController.getUsers);
-router.get("/lista-usuarios", async (req, res) => {
+router.post("/lista-usuarios", async (req, res) => {
     try {
       const users = await UserModel.findAll();
       res.send(users);
