@@ -3,8 +3,8 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cors());
-const AuthRouter = require("./routes/auth");
-const ApiRouter = require("./routes/api");
+//const AuthRouter = require("./routes/auth");
+//const ApiRouter = require("./routes/api");
 const port = process.env.PORT || 3001;
 
 //app.use("/", AuthRouter);
