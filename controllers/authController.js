@@ -7,7 +7,9 @@ function login(req, res) {
   const { email, senha } = req.body;
   console.log(email, senha);
   const sql = "SELECT * FROM usuarios where email = ? ";
+  
   DB.query(sql, [email], (err, results) => {
+    console.log(req.body)
     if (err) {
       console.error(err); 
       res.status(500).send({ error: "Ouve um erro no banco de dados." });
