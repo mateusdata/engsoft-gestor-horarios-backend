@@ -1,4 +1,6 @@
-function getUsers (req, res) {
+class UserController {
+  getUsers(req, res) {
     res.send("Voce pode acessar essa rota, e vc ta na rota de usuario");
-};
-module.exports = {getUsers};
+  }
+}
+module.exports = new UserController();

@@ -18,6 +18,7 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.6.1",
     "nodemon": "^3.0.1",
+    "sequelize": "^6.33.0",
     "sqlite3": "^5.1.6"
   }
 }
