@@ -11,7 +11,7 @@ app.use("/", AuthRouter);
 app.use("/", ApiRouter);
 
 app.get("/", function (req, res) {
-  res.send({projeto:"API do projeto de engenharia de software", rotas:""});
+  res.send({projeto:"API do projeto de engenharia de software", rotas:"/auth/login  -  /cadastro -  /teste -  /lista-usuarios - /estalogado "});
 });
 
 app.listen(port, () => {
