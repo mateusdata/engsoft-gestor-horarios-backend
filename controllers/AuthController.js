@@ -38,7 +38,7 @@ class AuthController {
       const users = await UserModel.findAll({
         attributes: ['nome', 'email', 'cargo']
       });
-      res.json(users);
+      res.send(users);
     } catch (err) {
       console.error("Erro ao buscar dados de usuário:", err);
       res.status(500).json({ error: "Erro ao buscar dados de usuário" });
