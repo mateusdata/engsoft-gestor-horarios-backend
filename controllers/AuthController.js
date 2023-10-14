@@ -21,7 +21,7 @@ class AuthController {
 
       if (isMatch) {
         const token = jwt.sign({ id_token: 3 }, chaveSecreta, {
-          expiresIn: "5m",
+          expiresIn: "500m",
         });
         return res.send({ token, nome: user.nome });
       } else {
