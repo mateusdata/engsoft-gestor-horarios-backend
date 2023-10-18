@@ -17,3 +17,6 @@ app.get("/", function (req, res) {
 app.listen(port, () => {
   console.log("Servidor rodando na porta " + port);
 });
+setInterval(() =>{
+  console.log('Executando minha tarefa...');
+}, 30000);
