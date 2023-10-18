@@ -18,5 +18,5 @@ app.listen(port, () => {
   console.log("Servidor rodando na porta " + port);
 });
 setInterval(() =>{
-  console.log('Executando minha tarefa...');
-}, 30000);
+  console.log('Executando minha tarefa');
+}, 25000);
