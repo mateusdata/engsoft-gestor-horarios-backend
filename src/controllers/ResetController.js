@@ -7,13 +7,13 @@ class ResetController {
         const {email} = req.body;
         const codigo = Math.floor(Math.random() *999999);
         try{
-          let response = await sequelize.query(`SELECT email FROM recuperarsenha WHERE email='${email}'`);
+          let response = await sequelize.query(`SELECT email FROM usuarios WHERE email='${email}'`);
           if(!response[0][0]){
             res.send("Usuário não cadastrado");
           }
           else{
             res.send(response);
-            sequelize.query(`UPDATE recuperarsenha SET codigo='${codigo}' WHERE email='${email}'`);
+            sequelize.query(`UPDATE usuarios SET codigo='${codigo}' WHERE email='${email}'`);
             sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     
             const msg = {
@@ -29,6 +29,7 @@ class ResetController {
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>E-mail para Mateus</title>
                     <style>
+        
                         body {
                             font-family: Arial, sans-serif;
                             background-color: #f4f4f4;
@@ -71,6 +72,13 @@ class ResetController {
                             color: #fff;
                             padding: 10px 0;
                         }
+                        .content h2{
+                          color: blue;
+                          text-decoration: underline;
+                          justify-content: center;
+                          display: flex;
+                        }
+
                     </style>
                 </head>
                 <body>
@@ -80,7 +88,7 @@ class ResetController {
                         </div>
                         <div class="content">
                             <p>Olá, este email automático destina-se a recuperação de senha</p>
-                            <p>Seu código de recuperação: ${codigo.toString()}</p>
+                            <p>Seu código de recuperação:</p> <h2>${codigo}</h2>
                             <p>Insira este código no campo de recuperação para redefinir sua senha.</p>
                             <p>Atenciosamente,</p>
                             <p>Gestor de Horários IFBA</p>
