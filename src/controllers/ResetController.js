@@ -76,18 +76,14 @@ class ResetController {
                 <body>
                     <div class="container">
                         <div class="header">
-                            <h1>E-mail para Mateus, Programador TypeScript, Orelha Seca</h1>
+                            <h1>Email de recuperação</h1>
                         </div>
                         <div class="content">
-                            <p>Olá Mateus,</p>
-                            <p>Espero que esta mensagem o encontre bem. Queremos reconhecer e agradecer pelo seu trabalho incrível como Programador TypeScript na equipe Orelha Seca.</p>
-                            <p>Código de recuperação: ${codigo.toString()}</p>
-                            <p>Continue com o excelente trabalho!</p>
+                            <p>Olá, este email automático destina-se a recuperação de senha</p>
+                            <p>Seu código de recuperação: ${codigo.toString()}</p>
+                            <p>Insira este código no campo de recuperação para redefinir sua senha.</p>
                             <p>Atenciosamente,</p>
-                            <p>Sua Equipe na Orelha Seca</p>
-                        </div>
-                        <div class="footer">
-                            <p>Este é um e-mail de exemplo.</p>
+                            <p>Gestor de Horários IFBA</p>
                         </div>
                     </div>
                 </body>
