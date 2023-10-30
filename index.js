@@ -11,14 +11,12 @@ app.use("/", AuthRouter);
 app.use("/", ApiRouter);
 
 app.get("/", function (req, res) {
-  res.send({ projeto: "API de Engenharia de Software", rotas: [ "/auth/login", "/cadastro", "/teste", "/lista-usuarios", "/estalogado" ] });
+  res.send({ projeto: "API de Engenharia de Software",
+  rotas: [ "/auth/login", "/cadastro", "/teste", "/lista-usuarios", "/estalogado" ] });
 });
 app.post("/recuperaremail", ResetController.recuperarEmail);
 app.post("/validarcodigo", ResetController.validarCodigo);
 app.post("/resetarsenha", ResetController.resetarSenha);
 app.listen(port, () => {
-  console.log("Servidor rodando na porta " + port);
+   console.log("Servidor rodando na porta " + port);
 });
-setInterval(() =>{
-  console.log('Executando minha tarefa');
-}, 25000);
