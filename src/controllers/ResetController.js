@@ -8,16 +8,16 @@ class ResetController {
         const codigo = Math.floor(Math.random() *999999);
         try{
           let response = await sequelize.query(`SELECT email FROM recuperarsenha WHERE email='${email}'`);
-          if(!response){
+          if(!response[0][0]){
             res.send("Usuário não cadastrado");
           }
           else{
             res.send(response);
-            sequelize.query(`UPDATE recuperarsenha SET codigo='${codigo}'`);
+            sequelize.query(`UPDATE recuperarsenha SET codigo='${codigo}' WHERE email='${email}'`);
             sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     
             const msg = {
-                to: "jpferreirafsa@gmail.com",
+                to: email,
                 from: "engsextosemestre@gmail.com",
                 subject: "Código de Recuperação",
                 text: codigo.toString(),
