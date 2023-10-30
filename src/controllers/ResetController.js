@@ -9,7 +9,7 @@ class ResetController {
         try{
           let response = await sequelize.query(`SELECT email FROM recuperarsenha WHERE email='${email}'`);
           if(!response[0][0]){
-            res.send("Usuário não cadastrado");
+            res.status(404).json({message:"Usuário não cadastrado"})
           }
           else{
             res.send(response);
