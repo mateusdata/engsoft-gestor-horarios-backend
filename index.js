@@ -16,6 +16,9 @@ app.get("/", function (req, res) {
 });
 
 
+
+
+
 app.get('/pedro', (req, res) => {
   const pessoas = [
     { nome: 'Pedro ', idade: 30 },
@@ -50,9 +53,7 @@ app.get('/pedro', (req, res) => {
   res.send(htmlContent);
 });
 
-app.post("/recuperaremail", (req, res)=>{
-  res.send(req.body);
-});
+app.post("/recuperaremail", ResetController.recuperarEmail);
 app.post("/validarcodigo", ResetController.validarCodigo);
 app.post("/resetarsenha", ResetController.resetarSenha);
 app.get("/rotateste", TesteController.testarBanco);
