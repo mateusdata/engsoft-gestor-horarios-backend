@@ -123,7 +123,7 @@ class ResetController {
             res.send(" Código Valido!");
           }
           else{
-            res.send(" Código Inválido!");
+            res.status(400).send(" Código Inválido!");
           }
         }
         catch(error){
