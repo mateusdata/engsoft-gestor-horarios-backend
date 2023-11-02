@@ -16,16 +16,17 @@ class AuthController {
       if (!user) {
         return res.status(400).json({ status: 401, message: "Usuário inexistente" });
       }
+      const isValidUser = await bcrypt.compare(senha, user.senha);
+      
+      console.log(senha.length + " " + user.senha.length);
 
-      const isMatch = await bcrypt.compare(senha, user.senha);
-
-      if (isMatch) {
-        const token = jwt.sign({ id_token: 3 }, chaveSecreta, {
+      if (isValidUser) {
+        const token = jwt.sign({ id_token:user.id}, chaveSecreta, {
           expiresIn: "500m",
         });
         return res.send({ token, nome: user.nome });
       } else {
-        return res.status(400).json({ status: 401, message: "Senha incorreta" });
+        return res.status(400).json({ status: 401, message: "Senha incorreta"});
       }
     } catch (err) {
       console.error(err);
