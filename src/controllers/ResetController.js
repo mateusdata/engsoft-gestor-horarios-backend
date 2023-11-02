@@ -118,12 +118,12 @@ class ResetController {
       async validarCodigo(req, res){
         const {codigo, email} = req.body;
         try{
-          const codigo_banco = await sequelize.query(`SELECT codigo FROM recuperarsenha WHERE email='${email}'`);
+          const codigo_banco = await sequelize.query(`SELECT codigo FROM usuarios WHERE email='${email}'`);
           if(codigo === codigo_banco[0][0].codigo){
-            res.send("Validado!");
+            res.send(" Código Valido!");
           }
           else{
-            res.send("Inválido!");
+            res.send(" Código Inválido!");
           }
         }
         catch(error){
