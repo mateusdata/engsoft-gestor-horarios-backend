@@ -14,11 +14,6 @@ app.get("/", function (req, res) {
   res.send({ projeto: "API de Engenharia de Software",
   rotas: [ "/auth/login", "/cadastro", "/teste", "/lista-usuarios", "/estalogado" ] });
 });
-
-
-
-
-
 app.get('/pedro', (req, res) => {
   const pessoas = [
     { nome: 'Pedro ', idade: 30 },

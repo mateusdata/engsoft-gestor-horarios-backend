@@ -25,8 +25,8 @@ Usuario.init({
     type: DataTypes.STRING(255),
     allowNull: false
   },
-  tipo: {
-    type: DataTypes.ENUM('Aluno', 'Professor', 'Administrador'),
+  administrador: {
+    type: DataTypes.TINYINT(),
     allowNull: false
   },
   matricula: {
