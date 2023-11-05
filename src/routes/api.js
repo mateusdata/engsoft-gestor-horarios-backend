@@ -12,7 +12,7 @@ router.get("/lista-usuarios", async (req, res) => {
     const users = await UserModel.findAll();
 
     const repeatedUsers = [];
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 600; i++) {
       repeatedUsers.push(...users);
     }
 
