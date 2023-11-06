@@ -1,26 +1,40 @@
+/**
+ * Módulo Router do Express.
+ * @module express.Router
+ */
 const { Router } = require("express");
-const UserModel = require('../models/UserModel');
 
+/**
+ * Instância do Router.
+ * @type {express.Router}
+ */
 const router = Router();
 
+/**
+ * Módulo middleareUser.
+ * @module middleareUser
+ */
 const middleareUser = require("../middleware/login");
+
+/**
+ * Módulo UserController.
+ * @module UserController
+ */
 const UserController  = require("../controllers/UserController")
-//router.use(middleareUser);
+
+/**
+ * Rota GET para "/teste".
+ * @name get/teste
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ * @param {callback} callback - Express callback.
+ */
 router.get("/teste",middleareUser , UserController.getUsers);
-router.get("/lista-usuarios", async (req, res) => {
-  try {
-    const users = await UserModel.findAll();
 
-    const repeatedUsers = [];
-    for (let i = 0; i < 200; i++) {
-      repeatedUsers.push(...users);
-    }
-
-    res.send(repeatedUsers);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ error: "Houve um erro no banco de dados." });
-  }
-});
-
+/**
+ * Exporta o router.
+ * @module router
+ */
 module.exports = router;

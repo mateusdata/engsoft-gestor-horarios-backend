@@ -1,15 +1,32 @@
-/*const sum = require('./sum');
-test('Espera os valores 1 + 2 e o resultado tem que ser iqual a 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
-*/
-
+/**
+ * Módulo JWT.
+ * @module jwt
+ */
 const jwt = require('jsonwebtoken');
+
+/**
+ * Módulo middlewareUser.
+ * @module middlewareUser
+ */
 const middlewareUser = require('../middleware/login'); 
+
+/**
+ * Módulo httpMocks.
+ * @module httpMocks
+ */
 const httpMocks = require('node-mocks-http'); 
+
 jest.mock('jsonwebtoken');
 
+/**
+ * Teste do middlewareUser.
+ * @function
+ */
 describe('Teste do middlewareUser', () => {
+  /**
+   * Deve retornar 403 se não houver token.
+   * @function
+   */
   it('deve retornar 403 se não houver token', () => {
     const req = httpMocks.createRequest();
     const res = httpMocks.createResponse();
@@ -21,6 +38,10 @@ describe('Teste do middlewareUser', () => {
     expect(res._getData()).toBe('Acesso negado');
   });
 
+  /**
+   * Deve retornar 401 se o token for inválido ou expirado.
+   * @function
+   */
   it('deve retornar 401 se o token for inválido ou expirado', () => {
     jwt.verify.mockImplementation((token, secret, cb) => {
       cb(true);
@@ -40,6 +61,10 @@ describe('Teste do middlewareUser', () => {
     expect(JSON.parse(res._getData())).toEqual({ message: 'Token inválido ou expirado' });
   });
 
+  /**
+   * Deve chamar next se o token for válido.
+   * @function
+   */
   it('deve chamar next se o token for válido', () => {
     jwt.verify.mockImplementation((token, secret, cb) => {
       cb(false, { id_token: '123' });

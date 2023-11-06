@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/ResetController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/ResetController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @fileoverview Este arquivo define o controlador 'ResetController' para recuperação de senha.
  * @requires @sendgrid/mail
  * @requires bcrypt
@@ -45,13 +73,13 @@ class ResetController {
                 subject: "Código de Recuperação",
                 text:"Gestor de Horarios",
                 html: `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>E-mail para Mateus</title>
-                    <style>
+                &lt;!DOCTYPE html>
+                &lt;html lang="en">
+                &lt;head>
+                    &lt;meta charset="UTF-8">
+                    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    &lt;title>E-mail para Mateus&lt;/title>
+                    &lt;style>
                 
                         body {
                             font-family: Arial, sans-serif;
@@ -102,24 +130,24 @@ class ResetController {
                           display: flex;
                         }
                 
-                    </style>
-                </head>
-                <body>
-                    <div class="container">
-                        <div class="header">
-                            <img src="https://portal.ifba.edu.br/dgcom/documentos-e-manuais-arquivos/manuais/ifba_marca_vertical-01.png/@@download/file/IFBA_MARCA_vertical-01.png" alt="IFBA Logo" width="150">
-                            <h1>Email de recuperação</h1>
-                        </div>
-                        <div class="content">
-                            <p>Olá, este email automático destina-se à recuperação de senha</p>
-                            <p>Seu código de recuperação:</p> <h2>${codigo}</h2>
-                            <p>Insira este código no campo de recuperação para redefinir sua senha.</p>
-                            <p>Atenciosamente,</p>
-                            <p>Gestor de Horários IFBA</p>
-                        </div>
-                    </div>
-                </body>
-                </html>                
+                    &lt;/style>
+                &lt;/head>
+                &lt;body>
+                    &lt;div class="container">
+                        &lt;div class="header">
+                            &lt;img src="https://portal.ifba.edu.br/dgcom/documentos-e-manuais-arquivos/manuais/ifba_marca_vertical-01.png/@@download/file/IFBA_MARCA_vertical-01.png" alt="IFBA Logo" width="150">
+                            &lt;h1>Email de recuperação&lt;/h1>
+                        &lt;/div>
+                        &lt;div class="content">
+                            &lt;p>Olá, este email automático destina-se à recuperação de senha&lt;/p>
+                            &lt;p>Seu código de recuperação:&lt;/p> &lt;h2>${codigo}&lt;/h2>
+                            &lt;p>Insira este código no campo de recuperação para redefinir sua senha.&lt;/p>
+                            &lt;p>Atenciosamente,&lt;/p>
+                            &lt;p>Gestor de Horários IFBA&lt;/p>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/body>
+                &lt;/html>                
               `,
               };
               console.log('3')
@@ -183,4 +211,26 @@ class ResetController {
       
 }
 
-module.exports = new ResetController();
+module.exports = new ResetController();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="express.module_Router.html">Router</a></li><li><a href="module-AuthControler.html">AuthControler</a></li><li><a href="module-AuthController.html">AuthController</a></li><li><a href="module-RegisterController.html">RegisterController</a></li><li><a href="module-UserController.html">UserController</a></li><li><a href="module-httpMocks.html">httpMocks</a></li><li><a href="module-jwt.html">jwt</a></li><li><a href="module-middleareUser.html">middleareUser</a></li><li><a href="module-middlewareUser.html">middlewareUser</a></li><li><a href="module-router.html">router</a></li></ul><h3>Namespaces</h3><ul><li><a href="Usuario.html">Usuario</a></li><li><a href="sequelize.html">sequelize</a></li></ul><h3>Classes</h3><ul><li><a href="ResetController.html">ResetController</a></li><li><a href="module-AuthController-AuthController.html">AuthController</a></li><li><a href="module-RegisterController-RegisterController.html">RegisterController</a></li></ul><h3>Global</h3><ul><li><a href="global.html#jwt">jwt</a></li><li><a href="global.html#middlewareUser">middlewareUser</a></li><li><a href="global.html#sgMail">sgMail</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Nov 06 2023 11:00:56 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

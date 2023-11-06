@@ -1,10 +1,35 @@
+/**
+ * @fileoverview Este arquivo define o modelo 'Usuario' para o Sequelize.
+ * @requires sequelize
+ * @requires dotenv
+ */
+
+/**
+ * Importa o objeto Model e DataTypes do pacote 'sequelize'.
+ * Importa o pacote 'dotenv' e carrega as variáveis de ambiente.
+ * Importa a instância do Sequelize configurada anteriormente.
+ */
 const { Model, DataTypes } = require('sequelize');
 require('dotenv').config();
-
 const sequelize = require("../config/sequelize")
 
+/**
+ * Define a classe 'Usuario' que estende a classe 'Model' do Sequelize.
+ */
 class Usuario extends Model {}
 
+/**
+ * Inicializa o modelo 'Usuario' com sua estrutura de campos.
+ * @type {Model}
+ * @const
+ * @namespace Usuario
+ * @property {object} fields - A estrutura de campos do modelo.
+ * @property {object} options - Um objeto contendo opções de configuração.
+ * @property {Sequelize} options.sequelize - A instância do Sequelize a ser vinculada.
+ * @property {string} options.modelName - O nome do modelo.
+ * @property {string} options.tableName - O nome da tabela no banco de dados.
+ * @property {boolean} options.timestamps - Se o Sequelize deve lidar com a criação de timestamps.
+ */
 Usuario.init({
   id: {
     type: DataTypes.INTEGER,
@@ -51,9 +76,12 @@ Usuario.init({
   }
 }, {
   sequelize,
-  modelName: 'Usuario', // Nome do modelo
-  tableName: 'usuarios', // Nome da tabela no banco de dados
+  modelName: 'Usuario',
+  tableName: 'usuarios',
   timestamps: false
 });
 
+/**
+ * Exporta o modelo 'Usuario'.
+ */
 module.exports = Usuario;
