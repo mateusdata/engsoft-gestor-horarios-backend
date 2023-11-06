@@ -11,8 +11,7 @@ const TesteController = require("./src/controllers/TesteController");
 app.use("/", AuthRouter);
 app.use("/", ApiRouter);
 app.get("/", function (req, res) {
-  res.send({ projeto: "API de Engenharia de Software",
-  rotas: [ "/auth/login", "/cadastro", "/teste", "/lista-usuarios", "/estalogado" ] });
+  res.send({ projeto: "API Gestor de Horáios"});
 });
 
 app.post("/recuperaremail", ResetController.recuperarEmail);
