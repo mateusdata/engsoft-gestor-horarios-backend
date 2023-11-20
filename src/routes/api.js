@@ -21,20 +21,23 @@ const middleareUser = require("../middleware/login");
  * @module UserController
  */
 const UserController  = require("../controllers/UserController")
-
-/**
- * Rota GET para "/teste".
- * @name get/teste
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
- * @param {callback} callback - Express callback.
- */
+//router.use(middleareUser);
 router.get("/teste",middleareUser , UserController.getUsers);
+router.get("/lista-usuarios", async (req, res) => {
+  try {
+    const users = await UserModel.findAll();
 
-/**
- * Exporta o router.
- * @module router
- */
+    const repeatedUsers = [];
+    for (let i = 0; i < 200; i++) {
+      repeatedUsers.push(...users);
+    }
+
+    res.send(repeatedUsers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ error: "Houve um erro no banco de dados." });
+  }
+});
+
 module.exports = router;
+

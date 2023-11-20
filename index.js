@@ -36,8 +36,7 @@ app.use("/", ApiRouter);
  * Rota raiz que retorna informações sobre o projeto e as rotas disponíveis.
  */
 app.get("/", function (req, res) {
-  res.send({ projeto: "API de Engenharia de Software",
-  rotas: [ "/auth/login", "/cadastro", "/teste", "/lista-usuarios", "/estalogado" ] });
+  res.send({ projeto: "API Gestor de Horáios"});
 });
 
 /**
