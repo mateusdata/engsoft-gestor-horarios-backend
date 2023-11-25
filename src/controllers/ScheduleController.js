@@ -1,3 +1,4 @@
+const { query } = require("express");
 const sequelize = require("../config/sequelize");
 
 class ScheduleController{
