@@ -10,7 +10,7 @@ const ResetController = require("./src/controllers/ResetController");
 const TesteController = require("./src/controllers/TesteController");
 const ScheduleController = require("./src/controllers/ScheduleController");
 const sequelize = require("./src/config/sequelize");
-const SchedulesController = require("./src/controllers/SchedulesController");
+const TeachersController = require("./src/controllers/TeachersController");
 app.use("/", AuthRouter);
 app.use("/", ApiRouter);
 app.get("/", function (req, res) {
@@ -21,7 +21,7 @@ app.post("/recuperaremail", ResetController.recuperarEmail);
 app.post("/validarcodigo", ResetController.validarCodigo);
 app.post("/resetarsenha", ResetController.resetarSenha);
 app.get("/rotateste", TesteController.testarBanco);
-app.get("/teacher_list", SchedulesController.show_teacher);
+app.get("/teacher_list", TeachersController.show_teacher);
 app.get("/horarios", ScheduleController.mostrarHorario);
 app.listen(port, () => {
    console.log("Servidor rodando na porta " + port);
