@@ -85,3 +85,5 @@ Usuario.init({
  * Exporta o modelo 'Usuario'.
  */
 module.exports = Usuario;
+
+

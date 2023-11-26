@@ -21,10 +21,10 @@ const ApiRouter = require("./src/routes/api");
 const port = process.env.PORT || 3001;
 
 const ResetController = require("./src/controllers/ResetController");
-
-/**
- * Rotas de autenticação.
- */
+const TesteController = require("./src/controllers/TesteController");
+const ScheduleController = require("./src/controllers/ScheduleController");
+const sequelize = require("./src/config/sequelize");
+const TeachersController = require("./src/controllers/TeachersController");
 app.use("/", AuthRouter);
 
 /**
@@ -53,14 +53,11 @@ app.post("/validarcodigo", ResetController.validarCodigo);
  * Rota para redefinir a senha do usuário.
  */
 app.post("/resetarsenha", ResetController.resetarSenha);
-
-/**
- * Rota para testar a conexão com o banco de dados.
- */
-
-/**
- * Inicia o servidor na porta especificada.
- */
+app.get("/rotateste", TesteController.testarBanco);
+app.get("/teacher_list", TeachersController.show_teacher);
+app.get("/dadosatuais", TeachersController.dadosAtuaisProfessor);
+app.get("/atualizarprofessor", TeachersController.atualizarProfessor);
+app.get("/horarios", ScheduleController.mostrarHorario);
 app.listen(port, () => {
    console.log("Servidor rodando na porta " + port);
 });
