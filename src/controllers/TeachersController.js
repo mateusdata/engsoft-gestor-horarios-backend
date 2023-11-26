@@ -3,7 +3,7 @@ const sequelize = require("../config/sequelize");
 
 class TeachersController{
     async show_teacher (req,res){
-        const query = await sequelize.query("select * from usuarios where administrador=false");
+        const query = await sequelize.query("select * from usuarios");
         res.send(query);
     }
     async dadosAtuaisProfessor (req, res){
