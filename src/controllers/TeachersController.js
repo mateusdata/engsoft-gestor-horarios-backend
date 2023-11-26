@@ -24,7 +24,8 @@ class TeachersController{
             res.send("cadastro realizado com sucesso?!");
         }
         catch(error){
-            res.send({mensage:"Ocorreu um erro com o base da dados",error:error});
+           
+            res.status(500).send({ error: error, bodyError:req.body, bodyError2:req.params, tesEdras: res.params.nome});
         }
 
     }
