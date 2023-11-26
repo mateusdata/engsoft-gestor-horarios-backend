@@ -56,7 +56,7 @@ app.post("/resetarsenha", ResetController.resetarSenha);
 app.get("/rotateste", TesteController.testarBanco);
 app.get("/teacher_list", TeachersController.show_teacher);
 app.get("/dadosatuais/:matricula", TeachersController.dadosAtuaisProfessor);
-app.post("/atualizarprofessor", TeachersController.atualizarProfessor);
+app.put("/atualizarprofessor", TeachersController.atualizarProfessor);
 app.get("/horarios", ScheduleController.mostrarHorario);
 app.listen(port, () => {
    console.log("Servidor rodando na porta " + port);
