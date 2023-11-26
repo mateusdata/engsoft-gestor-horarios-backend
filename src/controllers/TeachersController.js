@@ -7,7 +7,7 @@ class TeachersController{
         res.send(query);
     }
     async dadosAtuaisProfessor (req, res){
-        const {matricula} = req.body;
+        const {matricula} = req.params;
         try{
             const query = await sequelize.query(`select id, nome, matricula, departamento, cargo, email, administrador from usuarios where matricula = '${matricula}'`);
             res.send(query[0]);
