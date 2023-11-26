@@ -21,10 +21,10 @@ class TeachersController{
         const {matricula, nome, email, departamento, cargo, administrador} = req.body;
         try{
             const query = await sequelize.query(`UPDATE usuarios SET nome='${nome}', email='${email}, departamento='${departamento}',cargo='${cargo}', administrador='${administrador}' WHERE matricula='${matricula}'`);
-            res.send(query[0]);
+            res.send("cadastro realizado com sucesso?!");
         }
         catch{
-            res.send("erro");
+            res.send("Ocorreu um erro com o base da dados");
         }
 
     }
