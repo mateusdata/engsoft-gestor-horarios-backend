@@ -13,6 +13,7 @@ class TeachersController{
     }
     async atualizarProfessor(req, res){
         const {matricula, nome, email, departamento, cargo, administrador} = req.body;
+        console.log(email);
         const query = await sequelize.query(`UPDATE usuarios SET nome='${nome}', email='${email}, departamento='${departamento}',cargo='${cargo}', administrador='${administrador}' WHERE matricula='${matricula}'`);
         res.send(query[0]);
     }
