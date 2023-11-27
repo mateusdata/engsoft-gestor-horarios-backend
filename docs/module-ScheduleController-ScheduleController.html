@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: middleware/login.js</title>
+    <title>JSDoc: Class: ScheduleController</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,69 +17,138 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: middleware/login.js</h1>
+    <h1 class="page-title">Class: ScheduleController</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @fileoverview Este arquivo define um middleware para autenticação de usuários.
- * @requires jsonwebtoken
- */
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-ScheduleController.html">ScheduleController</a>~</span>ScheduleController<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">ScheduleController é uma classe que lida com solicitações relacionadas a horários.</div>
+        
+    
+</header>
 
-/**
- * Importa o pacote 'jsonwebtoken'.
- * Define a chave secreta para a verificação do token.
- */
-const jwt = require("jsonwebtoken");
-const chaveSecreta = "mateus";
+<article>
+    <div class="container-overview">
+    
+        
 
-/**
- * Define o middleware para autenticação de usuários.
- * @param {object} req - O objeto de solicitação do Express.
- * @param {object} res - O objeto de resposta do Express.
- * @param {function} next - A função next do Express para passar o controle para o próximo middleware.
- */
-const middlewareUser = (req, res, next) => {
-  // Recupera o token do cabeçalho da solicitação.
-  const tokenHeader = req.header("Authorization");
-  
-  // Se não houver token, retorna um erro 403 (Acesso Negado).
-  if (!tokenHeader) {
-    return res.status(403).send("Acesso negado");
-  }
+    
+    <h2>Constructor</h2>
+    
 
-  // Extrai o token do cabeçalho.
-  const token = tokenHeader.split(" ")[1];
+    
+    <h4 class="name" id="ScheduleController"><span class="type-signature"></span>new ScheduleController<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
-  try {
-    // Verifica o token usando a chave secreta.
-    jwt.verify(token, chaveSecreta, (err, decode) => {
-      // Se houver um erro na verificação, retorna um erro 401 (Não Autorizado).
-      if (err) {
-        return res.status(401).json({ message: "Token inválido ou expirado" });
-      }
-      // Se a verificação for bem-sucedida, anexa o id do token à solicitação e passa o controle para o próximo middleware.
-      req.id_token = decode.id_token;
-      next();
-    });
-  } catch {
-    // Se houver um erro interno, retorna um erro 500 (Erro Interno do Servidor).
-    return res.status(500).json({ message: "Erro interno no servidor", token });
-  }
-};
+    
 
-/**
- * Exporta o middleware de autenticação do usuário.
- */
-module.exports = middlewareUser;
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controllers_ScheduleController.js.html">controllers/ScheduleController.js</a>, <a href="controllers_ScheduleController.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

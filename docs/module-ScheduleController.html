@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: RegisterController</title>
+    <title>JSDoc: Module: ScheduleController</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: RegisterController</h1>
+    <h1 class="page-title">Module: ScheduleController</h1>
 
     
 
@@ -33,8 +33,6 @@
 <article>
     <div class="container-overview">
     
-        
-            <div class="description">Módulo para lidar com o registro de usuários.</div>
         
 
         
@@ -69,7 +67,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controllers_RegisterController.js.html">controllers/RegisterController.js</a>, <a href="controllers_RegisterController.js.html#line1">line 1</a>
+        <a href="controllers_ScheduleController.js.html">controllers/ScheduleController.js</a>, <a href="controllers_ScheduleController.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -88,12 +86,20 @@
     
 
     
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:express</li>
+        
+            <li>module:../config/sequelize</li>
+        </ul>
+    
 
     
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="module-RegisterController-RegisterController.html">RegisterController</a></dt>
+            <dt><a href="module-ScheduleController-ScheduleController.html">ScheduleController</a></dt>
             <dd></dd>
         </dl>
     
@@ -107,34 +113,107 @@
     
 
     
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Módulo RegisterController.</div>
-        
+        <h3 class="subsection-title">Methods</h3>
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="~mostrarHorario"><span class="type-signature">(async, inner) </span>mostrarHorario<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Este método busca o horário de um determinado semestre no banco de dados e o envia como resposta.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">O objeto de solicitação.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">O objeto de resposta.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
 
 
 <dl class="details">
@@ -166,7 +245,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_auth.js.html">routes/auth.js</a>, <a href="routes_auth.js.html#line19">line 19</a>
+        <a href="controllers_ScheduleController.js.html">controllers/ScheduleController.js</a>, <a href="controllers_ScheduleController.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -178,31 +257,43 @@
 </dl>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
         
-    
-    </div>
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
 
     
 
-    
 
-    
-        <h3 class="subsection-title">Classes</h3>
 
-        <dl>
-            <dt><a href="module-RegisterController-RegisterController.html">RegisterController</a></dt>
-            <dd></dd>
-        </dl>
-    
 
-    
 
-    
-
-    
-
-    
-
+        
     
 
     
