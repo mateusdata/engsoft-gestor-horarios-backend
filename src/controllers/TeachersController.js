@@ -4,7 +4,7 @@ const sequelize = require("../config/sequelize");
 
 class TeachersController{
     async show_teacher (req,res){
-        const query = await sequelize.query("select * from usuarios");
+        const query = await sequelize.query("select id, nome, matricula, departamento, cargo, email, administrador from usuarios");
         res.send(query);
     }
     async dadosAtuaisProfessor (req, res){
@@ -21,12 +21,11 @@ class TeachersController{
     async atualizarProfessor(req, res){
         const {matricula, nome, email, departamento, cargo, administrador} = req.body;
         try{
-            const query = await sequelize.query(`UPDATE usuarios SET nome='${nome}', email='${email}, departamento='${departamento}',cargo='${cargo}', administrador='${administrador}' WHERE matricula='${matricula}'`);
+            const query = await sequelize.query(`UPDATE usuarios SET nome='${nome}', email='${email}', departamento='${departamento}',cargo='${cargo}' WHERE matricula='${matricula}'`);
             res.send("cadastro realizado com sucesso?!");
         }
-        catch(error){
-           
-            res.status(500).send({ error: error, bodyError:req.body, bodyError2:req.params, tesEdras: res.params.nome});
+        catch(error){ 
+            res.send(error);
         }
 
     }
