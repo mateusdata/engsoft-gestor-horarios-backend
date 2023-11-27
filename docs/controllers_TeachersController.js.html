@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/TeachersController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/TeachersController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module TeachersController
+ * @requires sequelize
+ * @requires ../config/sequelize
+ */
+
+const { QueryError } = require("sequelize");
+const sequelize = require("../config/sequelize");
+
+/**
+ * @class
+ * @classdesc TeachersController é uma classe que lida com solicitações relacionadas a professores.
+ */
+class TeachersController{
+    /**
+     * @async
+     * @function show_teacher
+     * @description Este método busca todos os usuários não administradores no banco de dados e os envia como resposta.
+     * @param {Object} req - O objeto de solicitação.
+     * @param {Object} res - O objeto de resposta.
+     * @returns {void}
+     */
+    async show_teacher (req,res){
+        const query = await sequelize.query("select * from usuarios where administrador=false");
+        res.send(query);
+    }
+    /**
+     * @async
+     * @function dadosAtuaisProfessor
+     * @description Este método busca os dados atuais de um professor com base em seu número de registro e os envia como resposta.
+     * @param {Object} req - O objeto de solicitação.
+     * @param {Object} res - O objeto de resposta.
+     * @returns {void}
+     */
+    async dadosAtuaisProfessor (req, res){
+        const {matricula} = req.params;
+        try{
+            const query = await sequelize.query(`select id, nome, matricula, departamento, cargo, email, administrador from usuarios where matricula = '${matricula}'`);
+            console.log("deu certo");
+            res.send("Atualizado");
+        }
+        catch{
+            res.send("erro");
+        }
+
+    }
+    /**
+     * @async
+     * @function atualizarProfessor
+     * @description Este método atualiza os dados de um professor no banco de dados com base nos dados recebidos no corpo da solicitação.
+     * @param {Object} req - O objeto de solicitação.
+     * @param {Object} res - O objeto de resposta.
+     * @returns {void}
+     */
+    async atualizarProfessor(req, res){
+        const {matricula, nome, email, departamento, cargo, administrador} = req.body;
+        try{
+            const query = await sequelize.query(`UPDATE usuarios SET nome='${nome}', email='${email}', 
+            departamento='${departamento}',cargo='${cargo}', administrador='${administrador}' WHERE matricula='${matricula}'`);
+            res.send({mensage:"cadastro realizado com sucesso?!\n ",})
+        }
+        catch(error){  
+        console.log(error); 
+
+        res.send("ocoreu um erro")
+        }
+
+    }
+}
+
+module.exports = new TeachersController();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="express.module_Router.html">Router</a></li><li><a href="module-AuthControler.html">AuthControler</a></li><li><a href="module-AuthController.html">AuthController</a></li><li><a href="module-RegisterController.html">RegisterController</a></li><li><a href="module-ScheduleController.html">ScheduleController</a></li><li><a href="module-TeachersController.html">TeachersController</a></li><li><a href="module-UserController.html">UserController</a></li><li><a href="module-httpMocks.html">httpMocks</a></li><li><a href="module-jwt.html">jwt</a></li><li><a href="module-middleareUser.html">middleareUser</a></li><li><a href="module-middlewareUser.html">middlewareUser</a></li><li><a href="module-router.html">router</a></li></ul><h3>Namespaces</h3><ul><li><a href="Usuario.html">Usuario</a></li><li><a href="sequelize.html">sequelize</a></li></ul><h3>Classes</h3><ul><li><a href="ResetController.html">ResetController</a></li><li><a href="module-AuthController-AuthController.html">AuthController</a></li><li><a href="module-RegisterController-RegisterController.html">RegisterController</a></li><li><a href="module-ScheduleController-ScheduleController.html">ScheduleController</a></li><li><a href="module-TeachersController-TeachersController.html">TeachersController</a></li></ul><h3>Global</h3><ul><li><a href="global.html#jwt">jwt</a></li><li><a href="global.html#middlewareUser">middlewareUser</a></li><li><a href="global.html#port">port</a></li><li><a href="global.html#sgMail">sgMail</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Nov 26 2023 21:24:00 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

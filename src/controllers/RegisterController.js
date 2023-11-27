@@ -18,9 +18,6 @@ class RegisterController {
    * @param {Object} res - O objeto de resposta HTTP.
    */
   async register(req, res) {
-<<<<<<< HEAD
-    // Desestruturando o corpo da solicitação
-=======
     try {
       let usersToRegister = [];
 
@@ -66,7 +63,6 @@ const UserModel = require("../models/UserModel");
 
 class RegisterController {
   async register(req, res) {
->>>>>>> main
     const { cargo, departamento, email, matricula, nome, senha,  administrador } = req.body;
     try {
       // Gerando o salt e o hash da senha
