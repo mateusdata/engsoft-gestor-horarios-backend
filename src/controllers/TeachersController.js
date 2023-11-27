@@ -1,4 +1,5 @@
 const { QueryError } = require("sequelize");
+const UserModel = require("../models/UserModel");
 const sequelize = require("../config/sequelize");
 
 class TeachersController{
@@ -28,6 +29,23 @@ class TeachersController{
             res.status(500).send({ error: error, bodyError:req.body, bodyError2:req.params, tesEdras: res.params.nome});
         }
 
+    }
+
+    async deleteTeacher(req, res){
+        const { id } = req.params;
+        try {
+            const user = await UserModel.destroy({
+                where: { id },
+              });
+            if(user > 0){
+                res.send("Sucess");
+            } else{
+                res.status(500).send("Error");
+            }
+        } catch (error) {
+            res.status(500).send("Error");
+        }
+        
     }
 }
 

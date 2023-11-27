@@ -22,6 +22,7 @@ app.post("/validarcodigo", ResetController.validarCodigo);
 app.post("/resetarsenha", ResetController.resetarSenha);
 app.get("/rotateste", TesteController.testarBanco);
 app.get("/teacher_list", TeachersController.show_teacher);
+app.delete("/delete-teacher/:id", TeachersController.deleteTeacher);
 app.get("/dadosatuais/:matricula", TeachersController.dadosAtuaisProfessor);
 app.post("/atualizarprofessor", TeachersController.atualizarProfessor);
 app.get("/horarios", ScheduleController.mostrarHorario);
