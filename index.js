@@ -24,7 +24,7 @@ app.get("/rotateste", TesteController.testarBanco);
 app.get("/teacher_list", TeachersController.show_teacher);
 app.delete("/delete-teacher/:id", TeachersController.deleteTeacher);
 app.get("/dadosatuais/:matricula", TeachersController.dadosAtuaisProfessor);
-app.post("/atualizarprofessor", TeachersController.atualizarProfessor);
+app.get("/atualizarprofessor", TeachersController.atualizarProfessor);
 app.get("/horarios", ScheduleController.mostrarHorario);
 app.listen(port, () => {
    console.log("Servidor rodando na porta " + port);
