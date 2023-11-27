@@ -1,5 +1,4 @@
 const { Sequelize } = require('sequelize');
-const mysql2 = require('mysql2');
 const pg = require('pg');
 
 
@@ -18,6 +17,7 @@ const sequelize = new Sequelize(
   dialectModule: pg, // Usar o pacote mysql2 se nao usar isso nao da pra subir a api na vercel
   //essa foi a forma que eu achei pra corrigir o bug
 });
+/*
 sequelize
   .authenticate()
   .then(() => {
@@ -26,5 +26,5 @@ sequelize
   .catch((err) => {
     console.error('Erro ao conectar ao banco de dados:', err);
   });
-
+*/
 module.exports = sequelize;
