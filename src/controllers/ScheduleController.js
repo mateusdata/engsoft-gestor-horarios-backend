@@ -10,6 +10,22 @@ class ScheduleController{
         const materias = ["prim_hor_materia", "segu_hor_materia", "terc_hor_materia", "quar_hor_materia", "quin_hor_materia", "sext_hor_materia"]
         try{
             const query = await sequelize.query(`select prim_hor, prim_hor_materia, segu_hor, segu_hor_materia, terc_hor, terc_hor_materia, quar_hor, quar_hor_materia, quin_hor, quin_hor_materia, sext_hor, sext_hor_materia from ${modalidade} where id='${semestre}'`);
+            const usuarios = await sequelize.query(`select matricula, nome from usuarios`);
+            const disciplinas = await sequelize.query(`select cod,nome from disciplinas`);
+            for(var c=0; c<query[0].length; c++){
+                for(var i=0; i<horarios.length; i++){
+                    for(var j=0; j<usuarios[0].length; j++){
+    
+                        if(query[0][c][horarios[i]] == usuarios[0][j]["matricula"]){
+                            query[0][c][horarios[i]] = usuarios[0][j]["nome"];
+                        }
+                        if(query[0][c][materias[i]] == disciplinas[0][j]["cod"]){
+                            query[0][c][materias[i]] = disciplinas[0][j]["nome"];
+                        }
+                    }
+                }
+    
+            }
             res.send(query[0]);
         }
         catch{
