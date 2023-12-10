@@ -1,11 +1,18 @@
 const { QueryError } = require("sequelize");
 const UserModel = require("../models/UserModel");
 const sequelize = require("../config/sequelize");
-
+const Usuario = require("../models/UserModel");
+const { Op } = require('sequelize');
 class TeachersController{
     async show_teacher (req,res){
-        const query = await sequelize.query("select id, nome, matricula, departamento, cargo, email, administrador from usuarios");
-        res.send(query);
+        try {
+            const usuarios = await Usuario.findAll();
+            res.send(usuarios);
+        } catch (error) {
+            res.status(500).send({
+                message: "Ocorreu um erro ao tentar recuperar os dados do professor."
+            });
+        }
     }
     async dadosAtuaisProfessor (req, res){
         const {matricula} = req.params;
@@ -18,6 +25,26 @@ class TeachersController{
         }
 
     }
+    async seachTeacher(req, res) {
+        console.log(req.query.nome);
+        try {
+            const users = await Usuario.findAll({
+                where: {
+                    nome: {
+                        [Op.iLike]: `${req.query.nome}%`
+                    }
+                }
+            });
+    
+            res.send(users);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Erro interno do servidor');
+        }
+    }
+    
+
+    
     async atualizarProfessor(req, res){
         const {matricula, nome, email, departamento, cargo, administrador} = req.body;
         try{
@@ -48,7 +75,18 @@ class TeachersController{
         } catch (error) {
             res.status(500).send("Error");
         }
-        
+    }
+    
+    async dadosAtuaisProfessor (req, res){
+        const {matricula} = req.params;
+        try{
+            const query = await sequelize.query(`select id, nome, matricula, departamento, cargo, email, administrador from usuarios where matricula = '${matricula}'`);
+            res.send(query[0]);
+        }
+        catch{
+            res.send("erro");
+        }
+
     }
 }
 
