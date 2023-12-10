@@ -3,7 +3,7 @@ const UserModel = require('../models/UserModel');
 
 jest.mock('../models/UserModel');
 
-describe('TeachersController', () => {
+describe('TeachersController', async () => {
   it('deve retornar sucesso ao deletar um professor', async () => {
     const req = {
       params: { id: 1 },
