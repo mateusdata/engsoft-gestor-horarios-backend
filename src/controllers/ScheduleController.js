@@ -24,12 +24,16 @@ class ScheduleController{
                         if (query[c][horarios[i]] === usuarios[j].matricula) {
                             query[c][horarios[i]] = usuarios[j].nome;
                         }
-                        if (query[c][materias[i]] === disciplinas[j].cod) {
-                            query[c][materias[i]] = disciplinas[j].nome;
+                    }
+                    for(let f=0; f < disciplinas.length; f++){
+                        if (query[c][materias[i]] === disciplinas[f].cod) {
+                            query[c][materias[i]] = disciplinas[f].nome;
                         }
                     }
+                    
                 }
             }
+            
             res.send(query);
         } catch (error) {
             res.send("erro fatal");
