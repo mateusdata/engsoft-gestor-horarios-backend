@@ -3,9 +3,18 @@ const sequelize = require("../config/sequelize");
 
 class ScheduleController{
     async mostrarHorario (req,res){
-        //const {semestre} = req.body;
-        const semestre = "primeiro";
-        const modalidade = "bacharelado_si";
+        if(typeof req.body.semestre == 'undefined'){
+            var semestre = "primeiro";
+        }
+        else{
+            var semestre = req.body.semestre;
+        }
+        if(typeof req.body.modalidade == 'undefined'){
+            var modalidade = "bacharelado_si";
+        }
+        else{
+            var modalidade = req.body.modalidade;
+        }
         const horarios = ["prim_hor", "segu_hor", "terc_hor", "quar_hor", "quin_hor", "sext_hor"];
         const materias = ["prim_hor_materia", "segu_hor_materia", "terc_hor_materia", "quar_hor_materia", "quin_hor_materia", "sext_hor_materia"]
         try{
