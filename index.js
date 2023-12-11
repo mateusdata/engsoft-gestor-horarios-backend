@@ -27,7 +27,6 @@ app.get("/seach-teacher", TeachersController.seachTeacher);
 app.delete("/delete-teacher/:id", TeachersController.deleteTeacher);
 app.get("/dadosatuais/:matricula", TeachersController.dadosAtuaisProfessor);
 app.put("/atualizarprofessor", TeachersController.atualizarProfessor);
-app.get("/horarios", ScheduleController.mostrarHorario);
 app.get("/show-schedules", ScheduleController.showSchedules);
 
 app.listen(port, () => {
