@@ -9,13 +9,19 @@ const Semestre1 = require("../models/Semestre1");
 class ScheduleController{
     async createSchedules(req,res){
         try {
-            const {dia,professor,disciplina,horario,semestre} = req.body;
+            const {dia, professor, disciplina, horario, semestre} = req.body;
             console.log(req.body);
-            await sequelize.query(`INSERT INTO public.semestre1(dia, professor, disciplina, horario, semestre) VALUES (${dia}, ${professor}, ${disciplina}, ${horario}, ${semestre})`)
+            await sequelize.query(`INSERT INTO public.semestre1(dia, professor, disciplina, horario, semestre) VALUES (?, ?, ?, ?, ?)`, 
+            { replacements: [dia, professor, disciplina, horario, semestre], type: sequelize.QueryTypes.INSERT });
+    
+            res.status(200).json({ message: 'Dados criados com sucesso!' });
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            res.status(500).json({ message: 'Houve um erro ao criar os dados.', error: error.toString() });
         }
     }
+    
+    
     async showSchedules(req,res){
         const { sem } = req.query;
         const schedules = ["prim_hor", "segu_hor", "terc_hor", "quar_hor", "quin_hor", "sext_hor"];
