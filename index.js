@@ -30,7 +30,7 @@ app.put("/atualizarprofessor", TeachersController.atualizarProfessor);
 app.get("/show-schedules", ScheduleController.showSchedules);
 app.post("/create-schedules",ScheduleController.createSchedules);
 app.get("/search-schedules/:semestre",ScheduleController.searchSchedules);
-
+app.get("/show-all-schedules",ScheduleController.showAllSchedules);
 app.listen(port, () => {
    console.log("Servidor rodando na porta " + port);
 });

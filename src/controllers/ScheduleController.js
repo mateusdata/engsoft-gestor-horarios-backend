@@ -52,6 +52,41 @@ class ScheduleController{
             res.status(500).json({ message: 'Houve um erro ao criar os dados.', error: error.toString() });
         }
     }
+
+    async showAllSchedules(req, res) {
+        try {
+            const tables = ['semestre1', 'semestre2', 'semestre3', 'semestre4', 'semestre5', 'semestre6', 'semestre7', 'semestre8'];
+            const allData = [];
+    
+            for (const table of tables) {
+                const dataFromDB = await sequelize.query(`SELECT * FROM public.${table}`, { replacements: [], type: sequelize.QueryTypes.SELECT });
+    
+                const formattedData = {};
+                dataFromDB.forEach(schedule => {
+                    if (!formattedData[schedule.dia]) {
+                        formattedData[schedule.dia] = {
+                            dia: schedule.dia,
+                            aulas: []
+                        };
+                    }
+                    formattedData[schedule.dia].aulas.push({
+                        name: schedule.professor,
+                        disciplina: schedule.disciplina,
+                        horario: schedule.horario
+                    });
+                });
+    
+                const dataArray = Object.values(formattedData);
+                allData.push(dataArray);
+            }
+    
+            res.send(allData);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'Houve um erro ao criar os dados.', error: error.toString() });
+        }
+    }
+    
     
     
     
