@@ -79,7 +79,7 @@ class ScheduleController{
                 allData.push(dataArray);
             }
     
-            res.send(allData);
+            res.send(allData[0]);
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: 'Houve um erro ao criar os dados.', error: error.toString() });
