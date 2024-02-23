@@ -4,7 +4,6 @@ const Bsi = require("../models/Bsi");
 const UserController = require("./UserController");
 const Disciplinas = require("../models/Disciplinas");
 const Usuario = require("../models/UserModel");
-const Semestre1 = require("../models/Semestre1");
 
 class ScheduleController{
     async createSchedules(req,res){
@@ -86,7 +85,7 @@ class ScheduleController{
             res.status(500).json({ message: 'Houve um erro ao criar os dados.', error: error.toString() });
         }
     }
-    
+
     async  showSchedules(req, res) {
         const { semestre } = req.query;
         const horarios = ["prim_hor", "segu_hor", "terc_hor", "quar_hor", "quin_hor", "sext_hor"];
@@ -94,7 +93,7 @@ class ScheduleController{
     
         try {
             const query = await Bsi.findAll({
-                where: {id: semestre ? semestre : "setimo" }});
+                where: {id: semestre ? semestre : "primeiro" }});
     
             const usuarios = await Usuario.findAll();
             const disciplinas = await Disciplinas.findAll();
