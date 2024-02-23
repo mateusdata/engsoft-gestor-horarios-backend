@@ -21,19 +21,38 @@ class ScheduleController{
         }
     }
 
-    async searchSchedules(req,res){
+    async searchSchedules(req, res) {
         try {
-            const {semestre} = req.params;
+            const { semestre } = req.params;
             console.log(semestre);
-            await sequelize.query(`SELECT * FROM public.semestre${parseInt(semestre)}`, 
-            { replacements: [semestre], type: sequelize.QueryTypes.INSERT });
+            const dataFromDB = await sequelize.query(`SELECT * FROM public.semestre${parseInt(semestre)}`, { replacements: [semestre], type: sequelize.QueryTypes.SELECT });
     
-            res.status(200).json({ message: 'Dados criados com sucesso!' });
+            // Reestruturando os dados
+            const formattedData = {};
+            dataFromDB.forEach(schedule => {
+                if (!formattedData[schedule.dia]) {
+                    formattedData[schedule.dia] = {
+                        dia: schedule.dia,
+                        aulas: []
+                    };
+                }
+                formattedData[schedule.dia].aulas.push({
+                    name: schedule.professor,
+                    disciplina: schedule.disciplina,
+                    horario: schedule.horario
+                });
+            });
+    
+            // Convertendo o objeto em um array
+            const dataArray = Object.values(formattedData);
+    
+            res.send(dataArray);
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: 'Houve um erro ao criar os dados.', error: error.toString() });
         }
     }
+    
     
     
     async showSchedules(req,res){
