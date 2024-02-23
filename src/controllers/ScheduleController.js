@@ -87,50 +87,6 @@ class ScheduleController{
         }
     }
     
-    
-    
-    
-    async showSchedules(req,res){
-        const { sem } = req.query;
-        const schedules = ["prim_hor", "segu_hor", "terc_hor", "quar_hor", "quin_hor", "sext_hor"];
-        const subjects = ["prim_hor_materia", "segu_hor_materia", "terc_hor_materia", "quar_hor_materia", "quin_hor_materia", "sext_hor_materia"];
-        const arrayAll = ["id","dia","prim_hor","prim_hor_materia","dur_prim_hor","segu_hor","segu_hor_materia","dur_segu_hor","terc_hor","terc_hor_materia","dur_terc_hor","quar_hor","quar_hor_materia","dur_quar_hor","quin_hor","quin_hor_materia","dur_quin_hor","sext_hor","sext_hor_materia","dur_sext_hor"]
-
-        try {
-            const query = await Bsi.findAll(
-                {where: {id: sem ? sem : "primeiro"},
-                 attributes: arrayAll
-            });
-            const [users, disciplines] = await Promise.all([Usuario.findAll(),Disciplinas.findAll()]);
-
-            const usersMap = new Map(users.map(users => [users.matricula, users.nome]));
-            const disciplinesMap = new Map(disciplines.map(disciplines => [disciplines.cod, disciplines.nome]));
-
-            for (let c = 0; c < query.length; c++) {
-                const bsi = query[c];
-            
-                // Loop sobre os horários
-                for (let i = 0; i < schedules.length; i++) {
-                    const schedule = schedules[i];
-            
-                    // Substitui matrícula por nome do usuário, se aplicável
-                    if (usersMap.has(bsi[schedule])) {
-                        bsi[schedule] = usersMap.get(bsi[schedule]);
-                    }
-            
-                    // Substitui código da disciplina por nome da disciplina, se aplicável
-                    if (disciplinesMap.has(bsi[subjects[i]])) {
-                        bsi[subjects[i]] = disciplinesMap.get(bsi[subjects[i]]);
-                    }
-                }
-            }
-            res.send(query);
-
-        } catch{
-            res.send("Erro de Retorno de Horários.");
-        }
-    }
-    /*
     async  showSchedules(req, res) {
         const { semestre } = req.query;
         const horarios = ["prim_hor", "segu_hor", "terc_hor", "quar_hor", "quin_hor", "sext_hor"];
@@ -138,7 +94,7 @@ class ScheduleController{
     
         try {
             const query = await Bsi.findAll({
-                where: {id: semestre ? semestre : "primeiro" }});
+                where: {id: semestre ? semestre : "setimo" }});
     
             const usuarios = await Usuario.findAll();
             const disciplinas = await Disciplinas.findAll();
@@ -164,7 +120,7 @@ class ScheduleController{
             res.send("erro fatal");
         }
     }
-*/
+
     async currentHourlyData(req,res){
         const {semestre} = req.query;
         try{
