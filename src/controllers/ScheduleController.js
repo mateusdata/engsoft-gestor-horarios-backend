@@ -11,8 +11,22 @@ class ScheduleController{
         try {
             const {dia, professor, disciplina, horario, semestre} = req.body;
             console.log(req.body);
-            await sequelize.query(`INSERT INTO public.semestre1(dia, professor, disciplina, horario, semestre) VALUES (?, ?, ?, ?, ?)`, 
+            await sequelize.query(`INSERT INTO public.semestre${parseInt(semestre)}(dia, professor, disciplina, horario, semestre) VALUES (?, ?, ?, ?, ?)`, 
             { replacements: [dia, professor, disciplina, horario, semestre], type: sequelize.QueryTypes.INSERT });
+    
+            res.status(200).json({ message: 'Dados criados com sucesso!' });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'Houve um erro ao criar os dados.', error: error.toString() });
+        }
+    }
+
+    async searchSchedules(req,res){
+        try {
+            const {semestre} = req.params;
+            console.log(semestre);
+            await sequelize.query(`SELECT * FROM public.semestre${parseInt(semestre)}`, 
+            { replacements: [semestre], type: sequelize.QueryTypes.INSERT });
     
             res.status(200).json({ message: 'Dados criados com sucesso!' });
         } catch (error) {
