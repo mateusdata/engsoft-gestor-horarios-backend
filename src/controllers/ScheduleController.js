@@ -4,13 +4,23 @@ const Bsi = require("../models/Bsi");
 const UserController = require("./UserController");
 const Disciplinas = require("../models/Disciplinas");
 const Usuario = require("../models/UserModel");
+const Semestre1 = require("../models/Semestre1");
 
 class ScheduleController{
+    async createSchedules(req,res){
+        try {
+            const {dia,professor,disciplina,horario,semestre} = req.body;
+            console.log(req.body);
+            await sequelize.query(`INSERT INTO public.semestre1(dia, professor, disciplina, horario, semestre) VALUES (${dia}, ${professor}, ${disciplina}, ${horario}, ${semestre})`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     async showSchedules(req,res){
         const { sem } = req.query;
         const schedules = ["prim_hor", "segu_hor", "terc_hor", "quar_hor", "quin_hor", "sext_hor"];
         const subjects = ["prim_hor_materia", "segu_hor_materia", "terc_hor_materia", "quar_hor_materia", "quin_hor_materia", "sext_hor_materia"];
-        const arrayAll = ["dia","prim_hor","prim_hor_materia","dur_prim_hor","segu_hor","segu_hor_materia","dur_segu_hor","terc_hor","terc_hor_materia","dur_terc_hor","quar_hor","quar_hor_materia","dur_quar_hor","quin_hor","quin_hor_materia","dur_quin_hor","sext_hor","sext_hor_materia","dur_sext_hor"]
+        const arrayAll = ["id","dia","prim_hor","prim_hor_materia","dur_prim_hor","segu_hor","segu_hor_materia","dur_segu_hor","terc_hor","terc_hor_materia","dur_terc_hor","quar_hor","quar_hor_materia","dur_quar_hor","quin_hor","quin_hor_materia","dur_quin_hor","sext_hor","sext_hor_materia","dur_sext_hor"]
 
         try {
             const query = await Bsi.findAll(
@@ -40,7 +50,6 @@ class ScheduleController{
                     }
                 }
             }
-
             res.send(query);
 
         } catch{

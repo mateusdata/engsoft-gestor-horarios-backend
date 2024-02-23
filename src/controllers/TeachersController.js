@@ -76,7 +76,7 @@ class TeachersController{
             res.status(500).send("Error");
         }
     }
-    
+/*    
     async dadosAtuaisProfessor (req, res){
         const {matricula} = req.params;
         try{
@@ -88,6 +88,7 @@ class TeachersController{
         }
 
     }
+*/    
 }
 
 module.exports = new TeachersController();
